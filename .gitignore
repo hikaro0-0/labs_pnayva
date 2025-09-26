@@ -1,0 +1,12 @@
+.vs/
+Debug/
+Release/
+*.exe
+*.dll
+*.obj
+*.pdb
+*.sln
+x64/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
