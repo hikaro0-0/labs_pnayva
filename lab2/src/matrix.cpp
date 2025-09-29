@@ -1,4 +1,4 @@
-#include "C:\Users\User\Desktop\labs_pnayva\lab2\include\matrix.h"
+#include "matrix.h"
 
 Matrix::Matrix(int rows, int cols) : rows_(rows), cols_(cols), data_() {
     if (rows <= 0 || cols <= 0) {

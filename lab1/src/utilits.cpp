@@ -1,4 +1,4 @@
-#include "C:\Users\User\Desktop\labs_pnayva\lab1\include\utilits.h"
+#include "utilits.h"
 
 void clearScreen() {
     system("cls");

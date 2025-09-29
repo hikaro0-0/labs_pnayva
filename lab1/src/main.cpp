@@ -1,4 +1,4 @@
-#include "C:\Users\User\Desktop\labs_pnayva\lab1\include\menu.h"
+#include "menu.h"
 
 int main()
 {

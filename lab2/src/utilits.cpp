@@ -1,4 +1,4 @@
-#include "C:\Users\User\Desktop\labs_pnayva\lab2\include\utilits.h"
+#include "utilits.h"
 
 Matrix CreateMatrix() {
     int rows;

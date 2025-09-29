@@ -1,5 +1,5 @@
-#include "C:\Users\User\Desktop\labs_pnayva\lab2\include\menu.h"
-#include "C:\Users\User\Desktop\labs_pnayva\lab2\include\utilits.h"
+#include "menu.h"
+#include "utilits.h"
 
 void Menu() {
     setlocale(0, "rus");
