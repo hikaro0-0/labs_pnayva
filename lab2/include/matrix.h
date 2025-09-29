@@ -51,7 +51,7 @@ public:
         return os;
     }
 
-    friend std::istream& operator>>(std::istream& is, Matrix& matrix) {
+    friend std::istream& operator>>(std::istream& is, const Matrix& matrix) {
         for (int i = 0; i < matrix.rows_; ++i) {
             for (int j = 0; j < matrix.cols_; ++j) {
                 is >> matrix.data_[i][j];
