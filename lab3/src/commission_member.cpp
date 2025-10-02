@@ -15,11 +15,11 @@ commissionMember::commissionMember(const char* first, const char* last, const ch
 //    copyAutobiography(other.autobiography, other.autobiographySize);
 //}
 
-commissionMember::~commissionMember() {
-    delete[] commissionName;
-    delete[] certificateNumber;
-    clearAutobiography();
-}
+//commissionMember::~commissionMember() {
+//    delete[] commissionName;
+//    delete[] certificateNumber;
+//    clearAutobiography();
+//}
 
 void commissionMember::copyAutobiography(std::span<char*> otherAutobiography) {
     clearAutobiography();

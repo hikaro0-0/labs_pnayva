@@ -28,7 +28,7 @@ public:
         copyCommissionWorks(other.commissionWorks, other.commissionWorksSize);
     }*/
    // TeacherCommissionMember(const TeacherCommissionMember& other);
-    ~TeacherCommissionMember();
+    ~TeacherCommissionMember() override;
 
     void addCommissionWork(const char* work);
     void inputCommissionWorks();
