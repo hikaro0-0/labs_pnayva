@@ -16,7 +16,7 @@ public:
     explicit TeacherCommissionMember(const char* first = "", const char* last = "",
         const char* birth = "", const char* pos = "");
 
-    void setMiddleName(const char* middle);
+    virtual void setMiddleName(const char* middle);
     void setDegree(const char* degree);
     void setSpecialty(const char* spec);
     void setCommission(const char* commission);
