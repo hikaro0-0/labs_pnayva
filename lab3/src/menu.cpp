@@ -15,7 +15,6 @@ void showMainMenu() {
 
 void demoWithPredefinedData(Human*& human, universityTeacher*& teacher, commissionMember*& member, TeacherCommissionMember*& teacherMember) {
     std::cout << "\n=== ÄÅÌÎÍÑÒÐÀÖÈß Ñ ÓÑÒÀÍÎÂËÅÍÍÛÌÈ ÇÍÀ×ÅÍÈßÌÈ ===" << std::endl;
-
     human = new Human("Àííà", "Èâàíîâà", "Ñåðãååâíà", "20.03.1990");
 
     teacher = new universityTeacher("Ïåòð", "Ñèäîðîâ", "Âàñèëüåâè÷", "15.08.1975",

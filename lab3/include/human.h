@@ -30,7 +30,7 @@ public:
 
     void setFirstName(const char* first) { setString(firstName, first); }
     void setLastName(const char* last) { setString(lastName, last); }
-    void setMiddleName(const char* middle) { setString(middleName, middle); }
+    virtual void setMiddleName(const char* middle) { setString(middleName, middle); }
     void setBirthDate(const char* birth) { setString(birthDay, birth); }
 
     virtual void inputData();
