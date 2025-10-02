@@ -1,20 +1,19 @@
 #pragma once
 #include "human.h"
 
-class commissionMember : virtual public Human {
+class commissionMember : public Human {
 public:
-    char* commissionName;
+    char* commissionName=nullptr;
     int appointmentYear;
-    char* certificateNumber;
-    char** autobiography;
-    int autobiographySize;
+    char* certificateNumber=nullptr;
+    char** autobiography=nullptr;
+    int autobiographySize = 0;
 
-    void copyAutobiography(char** otherAutobiography, int otherSize);
+    void copyAutobiography(std::span<char*> otherAutobiography);
     void clearAutobiography();
 
-public:
-    commissionMember(const char* first = "", const char* last = "", const char* middle = "", const char* birth = "",
-        const char* commission = "", int year = 0, const char* certificate = "");
+    explicit commissionMember(const char* first = "", const char* last = "", const char* middle = "", const char* birth = "",
+        const char* commission = "", int year = 2015, const char* certificate = "");
     //commissionMember(const commissionMember& other);
     ~commissionMember() override;
 

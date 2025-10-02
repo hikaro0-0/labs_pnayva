@@ -1,21 +1,20 @@
 #pragma once
 #include "human.h"
 
-class universityTeacher : virtual public Human {
+class universityTeacher : public Human {
 public:
-    char* jobTitle;
-    char* academicDegree;
-    char* specialty;
-    char** ScientificWorks;
-    int workSize;
+    char* jobTitle = nullptr;
+    char* academicDegree = nullptr;
+    char* specialty = nullptr;
+    char** ScientificWorks = nullptr;
+    int workSize = 0;  
 
-    void copyScientificWorks(char** otherWorks, int otherSize);
+    void copyScientificWorks(std::span<char*> otherWorks);
     void clearScientificWorks();
 
-public:
-    universityTeacher(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "",
+    explicit universityTeacher(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "",
         const char* title = "", const char* degree = "", const char* spec = "");
-    universityTeacher(const universityTeacher& other);
+    //universityTeacher(const universityTeacher& other);
     ~universityTeacher() override;
 
     void addScientificWorks(const char* work);

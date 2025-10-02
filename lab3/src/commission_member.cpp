@@ -1,9 +1,9 @@
 #include "commission_member.h"
 
 commissionMember::commissionMember(const char* first, const char* last, const char* middle, const char* birth,
-    const char* commission, int year, const char* certificate) : Human(first, last, middle, birth),
-    commissionName(nullptr), appointmentYear(year), certificateNumber(nullptr), autobiography(nullptr), autobiographySize(0) {
+    const char* commission, int year, const char* certificate) : Human(first, last, middle, birth)   {
     setString(commissionName, commission);
+
     setString(certificateNumber, certificate);
 }
 
@@ -21,12 +21,14 @@ commissionMember::~commissionMember() {
     clearAutobiography();
 }
 
-void commissionMember::copyAutobiography(char** otherAutobiography, int otherSize) {
+void commissionMember::copyAutobiography(std::span<char*> otherAutobiography) {
     clearAutobiography();
-    if (otherSize > 0) {
-        autobiography = new char* [otherSize];
-        autobiographySize = otherSize;
-        for (int i = 0; i < otherSize; i++) {
+
+    if (!otherAutobiography.empty()) {
+        autobiography = new char* [otherAutobiography.size()];
+        autobiographySize = static_cast<int>(otherAutobiography.size());
+
+        for (int i = 0; i < otherAutobiography.size(); i++) {
             autobiography[i] = new char[std::strlen(otherAutobiography[i]) + 1];
             std::strcpy(autobiography[i], otherAutobiography[i]);
         }
@@ -43,7 +45,7 @@ void commissionMember::clearAutobiography() {
 }
 
 void commissionMember::addAutobiographyEntry(const char* entry) {
-    char** newAutobiography = new char* [autobiographySize + 1];
+    auto newAutobiography = new char* [autobiographySize + 1];
 
     for (int i = 0; i < autobiographySize; i++) {
         newAutobiography[i] = new char[std::strlen(autobiography[i]) + 1];
@@ -64,31 +66,31 @@ void commissionMember::addAutobiographyEntry(const char* entry) {
 
 void commissionMember::inputAutobiography() {
     std::cout << "¬вод автобиографии (дл€ завершени€ введите пустую строку):" << std::endl;
-    char buffer[200];
+    std::string buffer;
 
     while (true) {
         std::cout << "¬ведите запись автобиографии: ";
-        std::cin.getline(buffer, 200);
-        if (strlen(buffer) == 0) break;
-        addAutobiographyEntry(buffer);
+        std::getline(std::cin, buffer);
+        if (buffer.empty()) break;
+        addAutobiographyEntry(buffer.c_str());
     }
 }
 
 void commissionMember::inputData() {
     Human::inputData();
-    char buffer[100];
+    std::string buffer;
 
     std::cout << "¬ведите название комиссии: ";
-    std::cin.getline(buffer, 100);
-    setString(commissionName, buffer);
+    std::getline(std::cin, buffer);
+    setString(commissionName, buffer.c_str());
 
     std::cout << "¬ведите год назначени€: ";
     std::cin >> appointmentYear;
     std::cin.ignore();
 
     std::cout << "¬ведите номер свидетельства: ";
-    std::cin.getline(buffer, 100);
-    setString(certificateNumber, buffer);
+    std::getline(std::cin, buffer);
+    setString(certificateNumber, buffer.c_str());
 
     inputAutobiography();
 }

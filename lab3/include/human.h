@@ -11,8 +11,8 @@ protected:
     void setString(char*& dest, const char* src);
 
 public:
-    Human(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "");
-    Human(const Human& other);
+    explicit Human(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "");
+    //Human(const Human& other);
     virtual ~Human();
 
     const char* getFirstName() const { return firstName; }

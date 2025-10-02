@@ -1,21 +1,21 @@
 #include "university_teacher.h"
 
 universityTeacher::universityTeacher(const char* first, const char* middle, const char* last, const char* birth,
-    const char* title, const char* degree, const char* spec) : Human(first, middle, last, birth),
-    jobTitle(nullptr), academicDegree(nullptr), specialty(nullptr), ScientificWorks(nullptr), workSize(0) {
+    const char* title, const char* degree, const char* spec) : Human(first, middle, last, birth) {
+    // workSize уже инициализирован в классе значением 0
     setString(jobTitle, title);
     setString(academicDegree, degree);
     setString(specialty, spec);
 }
 
-universityTeacher::universityTeacher(const universityTeacher& other)
-    : Human(other), jobTitle(nullptr), academicDegree(nullptr),
-    specialty(nullptr), ScientificWorks(nullptr), workSize(0) {
-    setString(jobTitle, other.jobTitle);
-    setString(academicDegree, other.academicDegree);
-    setString(specialty, other.specialty);
-    copyScientificWorks(other.ScientificWorks, other.workSize);
-}
+//universityTeacher::universityTeacher(const universityTeacher& other)
+//    : Human(other), jobTitle(nullptr), academicDegree(nullptr),
+//    specialty(nullptr), ScientificWorks(nullptr), workSize(0) {
+//    setString(jobTitle, other.jobTitle);
+//    setString(academicDegree, other.academicDegree);
+//    setString(specialty, other.specialty);
+//    copyScientificWorks(other.ScientificWorks, other.workSize);
+//}
 
 universityTeacher::~universityTeacher() {
     delete[] jobTitle;
@@ -24,12 +24,14 @@ universityTeacher::~universityTeacher() {
     clearScientificWorks();
 }
 
-void universityTeacher::copyScientificWorks(char** otherWorks, int otherSize) {
+void universityTeacher::copyScientificWorks(std::span<char*> otherWorks) {
     clearScientificWorks();
-    if (otherSize > 0) {
-        ScientificWorks = new char* [otherSize];
-        workSize = otherSize;
-        for (int i = 0; i < otherSize; i++) {
+
+    if (!otherWorks.empty()) {
+        ScientificWorks = new char* [otherWorks.size()];
+        workSize = static_cast<int>(otherWorks.size());
+
+        for (size_t i = 0; i < otherWorks.size(); i++) {
             ScientificWorks[i] = new char[std::strlen(otherWorks[i]) + 1];
             std::strcpy(ScientificWorks[i], otherWorks[i]);
         }
@@ -46,7 +48,7 @@ void universityTeacher::clearScientificWorks() {
 }
 
 void universityTeacher::addScientificWorks(const char* work) {
-    char** newWork = new char* [workSize + 1];
+    auto newWork = new char* [workSize + 1];
 
     for (int i = 0; i < workSize; i++) {
         newWork[i] = new char[std::strlen(ScientificWorks[i]) + 1];
@@ -67,31 +69,31 @@ void universityTeacher::addScientificWorks(const char* work) {
 
 void universityTeacher::inputScientificWorks() {
     std::cout << "¬вод научных работ (дл€ завершени€ введите пустую строку):" << std::endl;
-    char buffer[200];
+    std::string buffer;
 
     while (true) {
         std::cout << "¬ведите научную работу: ";
-        std::cin.getline(buffer, 200);
-        if (strlen(buffer) == 0) break;
-        addScientificWorks(buffer);
+        std::getline(std::cin, buffer);
+        if (buffer.empty()) break;
+        addScientificWorks(buffer.c_str());
     }
 }
 
 void universityTeacher::inputData() {
     Human::inputData();
-    char buffer[100];
+    std::string buffer;
 
     std::cout << "¬ведите должность: ";
-    std::cin.getline(buffer, 100);
-    setString(jobTitle, buffer);
+    std::getline(std::cin, buffer);
+    setString(jobTitle, buffer.c_str());
 
     std::cout << "¬ведите ученую степень: ";
-    std::cin.getline(buffer, 100);
-    setString(academicDegree, buffer);
+    std::getline(std::cin, buffer);
+    setString(academicDegree, buffer.c_str());
 
     std::cout << "¬ведите специальность: ";
-    std::cin.getline(buffer, 100);
-    setString(specialty, buffer);
+    std::getline(std::cin, buffer);
+    setString(specialty, buffer.c_str());
 
     inputScientificWorks();
 }

@@ -1,30 +1,23 @@
 #include "teacher_commission_member.h"
 
 TeacherCommissionMember::TeacherCommissionMember(const char* first, const char* middle, const char* last, const char* birth,
-    const char* pos, const char* degree, const char* spec, const char* commission, int year, const char* certificate)
-    : Human(first, middle, last, birth),
-    universityTeacher(first, middle, last, birth, pos, degree, spec),
-    commissionMember(first, middle, last, birth, commission, year, certificate),
-    commissionWorks(nullptr), commissionWorksSize(0) {}
-
-TeacherCommissionMember::TeacherCommissionMember(const TeacherCommissionMember& other)
-    : Human(other),
-    universityTeacher(other),
-    commissionMember(other),
-    commissionWorks(nullptr), commissionWorksSize(0) {
-    copyCommissionWorks(other.commissionWorks, other.commissionWorksSize);
-}
+    const char* pos, const char* degree, const char* spec,
+    const char* commission, int year, const char* certificate)
+    : universityTeacher(first, middle, last, birth, pos, degree, spec),
+    commissionMember(first, middle, last, birth, commission, year, certificate) {}
 
 TeacherCommissionMember::~TeacherCommissionMember() {
     clearCommissionWorks();
 }
 
-void TeacherCommissionMember::copyCommissionWorks(char** otherWorks, int otherSize) {
+void TeacherCommissionMember::copyCommissionWorks(std::span<char*> otherWorks) {
     clearCommissionWorks();
-    if (otherSize > 0) {
-        commissionWorks = new char* [otherSize];
-        commissionWorksSize = otherSize;
-        for (int i = 0; i < otherSize; i++) {
+
+    if (!otherWorks.empty()) {
+        commissionWorks = new char* [otherWorks.size()];
+        commissionWorksSize = static_cast<int>(otherWorks.size());
+
+        for (size_t i = 0; i < otherWorks.size(); i++) {
             commissionWorks[i] = new char[std::strlen(otherWorks[i]) + 1];
             std::strcpy(commissionWorks[i], otherWorks[i]);
         }
@@ -41,7 +34,7 @@ void TeacherCommissionMember::clearCommissionWorks() {
 }
 
 void TeacherCommissionMember::addCommissionWork(const char* work) {
-    char** newWorks = new char* [commissionWorksSize + 1];
+    auto newWorks = new char* [commissionWorksSize + 1];
 
     for (int i = 0; i < commissionWorksSize; i++) {
         newWorks[i] = new char[std::strlen(commissionWorks[i]) + 1];
@@ -73,45 +66,30 @@ void TeacherCommissionMember::inputCommissionWorks() {
 }
 
 void TeacherCommissionMember::inputData() {
-    Human::inputData();
+    universityTeacher::inputData();
 
-    char buffer[100];
-
-    std::cout << "Введите должность: ";
-    std::cin.getline(buffer, 100);
-    setString(jobTitle, buffer);
-
-    std::cout << "Введите ученую степень: ";
-    std::cin.getline(buffer, 100);
-    setString(academicDegree, buffer);
-
-    std::cout << "Введите специальность: ";
-    std::cin.getline(buffer, 100);
-    setString(specialty, buffer);
-
-    inputScientificWorks();
+    // Затем дополняем информацией о комиссии
+    std::string buffer;
 
     std::cout << "Введите название комиссии: ";
-    std::cin.getline(buffer, 100);
-    setString(commissionName, buffer);
+    std::getline(std::cin, buffer);
+    setString(commissionName, buffer.c_str());
 
     std::cout << "Введите год назначения: ";
     std::cin >> appointmentYear;
     std::cin.ignore();
 
     std::cout << "Введите номер свидетельства: ";
-    std::cin.getline(buffer, 100);
-    setString(certificateNumber, buffer);
+    std::getline(std::cin, buffer);
+    setString(certificateNumber, buffer.c_str());
 
     inputAutobiography();
     inputCommissionWorks();
 }
 
 void TeacherCommissionMember::showInfo() const {
-    Human::showInfo();
-    std::cout << "Должность: " << jobTitle << std::endl;
-    std::cout << "Ученая степень: " << academicDegree << std::endl;
-    std::cout << "Специальность: " << specialty << std::endl;
+    universityTeacher::showInfo();
+
     std::cout << "Комиссия: " << commissionName << std::endl;
     std::cout << "Год назначения: " << appointmentYear << std::endl;
     std::cout << "Номер свидетельства: " << certificateNumber << std::endl;

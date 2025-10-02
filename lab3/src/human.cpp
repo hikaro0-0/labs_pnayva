@@ -17,13 +17,13 @@ Human::Human(const char* first, const char* middle, const char* last, const char
     setString(birthDay, birth);
 }
 
-Human::Human(const Human& other) :
-    firstName(nullptr), middleName(nullptr), lastName(nullptr), birthDay(nullptr) {
-    setString(firstName, other.firstName);
-    setString(middleName, other.middleName);
-    setString(lastName, other.lastName);
-    setString(birthDay, other.birthDay);
-}
+//Human::Human(const Human& other) :
+//    firstName(nullptr), middleName(nullptr), lastName(nullptr), birthDay(nullptr) {
+//    setString(firstName, other.firstName);
+//    setString(middleName, other.middleName);
+//    setString(lastName, other.lastName);
+//    setString(birthDay, other.birthDay);
+//}
 
 Human::~Human() {
     delete[] firstName;
@@ -33,23 +33,23 @@ Human::~Human() {
 }
 
 void Human::inputData() {
-    char buffer[100];
+    std::string buffer;
 
     std::cout << "¬ведите фамилию: ";
-    std::cin.getline(buffer, 100);
-    setLastName(buffer);
+    std::getline(std::cin, buffer);
+    setLastName(buffer.c_str());
 
     std::cout << "¬ведите им€: ";
-    std::cin.getline(buffer, 100);
-    setFirstName(buffer);
+    std::getline(std::cin, buffer);
+    setFirstName(buffer.c_str());
 
     std::cout << "¬ведите отчество: ";
-    std::cin.getline(buffer, 100);
-    setMiddleName(buffer);
+    std::getline(std::cin, buffer);
+    setMiddleName(buffer.c_str());
 
     std::cout << "¬ведите дату рождени€ (дд.мм.гггг): ";
-    std::cin.getline(buffer, 100);
-    setBirthDate(buffer);
+    std::getline(std::cin, buffer);
+    setBirthDate(buffer.c_str());
 }
 
 void Human::showInfo() const {
