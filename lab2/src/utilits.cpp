@@ -20,14 +20,17 @@ void MultiplyMatrices() {
     std::cout << "\n=== Матрица B ===\n";
     Matrix b = CreateMatrix();
 
-    try {
-        Matrix result = a & b;
-        std::cout << "\n=== Результат (A & B) ===\n";
-        std::cout << result;
+    // Проверяем возможность умножения матриц перед выполнением операции
+    if (a.getCols() != b.getRows()) {
+        std::cout << "Ошибка: невозможно умножить матрицы - количество столбцов матрицы A ("
+            << a.getCols() << ") не равно количеству строк матрицы B ("
+            << b.getRows() << ")\n";
+        return;
     }
-    catch (const std::invalid_argument& e) {
-        std::cout << "Ошибка: " << e.what() << "\n";
-    }
+
+    Matrix result = a & b;
+    std::cout << "\n=== Результат (A & B) ===\n";
+    std::cout << result;
 }
 
 void clearScreen() {
