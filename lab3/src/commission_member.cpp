@@ -16,8 +16,10 @@ void commissionMember::copyAutobiography(std::span<char*> otherAutobiography) {
         autobiographySize = static_cast<int>(otherAutobiography.size());
 
         for (int i = 0; i < otherAutobiography.size(); i++) {
-            autobiography[i] = new char[std::strlen(otherAutobiography[i]) + 1];
-            std::strcpy(autobiography[i], otherAutobiography[i]);
+            int len = std::strlen(otherAutobiography[i]);
+            autobiography[i] = new char[len + 1];
+            std::strncpy(autobiography[i], otherAutobiography[i], len);
+            autobiography[i][len] = '\0'; // Гарантируем нулевое завершение
         }
     }
 }
@@ -34,14 +36,21 @@ void commissionMember::clearAutobiography() {
 void commissionMember::addAutobiographyEntry(const char* entry) {
     auto newAutobiography = new char* [autobiographySize + 1];
 
+
     for (int i = 0; i < autobiographySize; i++) {
-        newAutobiography[i] = new char[std::strlen(autobiography[i]) + 1];
-        std::strcpy(newAutobiography[i], autobiography[i]);
+        int len = std::strlen(autobiography[i]);
+        newAutobiography[i] = new char[len + 1];
+        std::strncpy(newAutobiography[i], autobiography[i], len);
+        newAutobiography[i][len] = '\0';
     }
 
-    newAutobiography[autobiographySize] = new char[std::strlen(entry) + 1];
-    std::strcpy(newAutobiography[autobiographySize], entry);
+  
+    int len = std::strlen(entry);
+    newAutobiography[autobiographySize] = new char[len + 1];
+    std::strncpy(newAutobiography[autobiographySize], entry, len);
+    newAutobiography[autobiographySize][len] = '\0';
 
+   
     for (int i = 0; i < autobiographySize; i++) {
         delete[] autobiography[i];
     }

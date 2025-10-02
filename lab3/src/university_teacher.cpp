@@ -16,9 +16,11 @@ void universityTeacher::copyScientificWorks(std::span<char*> otherWorks) {
         ScientificWorks = new char* [otherWorks.size()];
         workSize = static_cast<int>(otherWorks.size());
 
-        for (size_t i = 0; i < otherWorks.size(); i++) {
-            ScientificWorks[i] = new char[std::strlen(otherWorks[i]) + 1];
-            std::strcpy(ScientificWorks[i], otherWorks[i]);
+        for (int i = 0; i < otherWorks.size(); i++) {
+            int len = std::strlen(otherWorks[i]);
+            ScientificWorks[i] = new char[len + 1];
+            std::strncpy(ScientificWorks[i], otherWorks[i], len);
+            ScientificWorks[i][len] = '\0';
         }
     }
 }
@@ -35,14 +37,21 @@ void universityTeacher::clearScientificWorks() {
 void universityTeacher::addScientificWorks(const char* work) {
     auto newWork = new char* [workSize + 1];
 
+    
     for (int i = 0; i < workSize; i++) {
-        newWork[i] = new char[std::strlen(ScientificWorks[i]) + 1];
-        std::strcpy(newWork[i], ScientificWorks[i]);
+        int len = std::strlen(ScientificWorks[i]);
+        newWork[i] = new char[len + 1];
+        std::strncpy(newWork[i], ScientificWorks[i], len);
+        newWork[i][len] = '\0';
     }
 
-    newWork[workSize] = new char[std::strlen(work) + 1];
-    std::strcpy(newWork[workSize], work);
+    
+    int len = std::strlen(work);
+    newWork[workSize] = new char[len + 1];
+    std::strncpy(newWork[workSize], work, len);
+    newWork[workSize][len] = '\0';
 
+    
     for (int i = 0; i < workSize; i++) {
         delete[] ScientificWorks[i];
     }

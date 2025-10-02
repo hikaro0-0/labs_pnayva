@@ -93,15 +93,16 @@ void Matrix::fillMatrixManual() const {
 
 void Matrix::fillMatrixAuto(int minVal, int maxVal) const {
     std::random_device rd;
-    std::mt19937 gen(rd());
+
     std::uniform_int_distribution dist(minVal, maxVal);
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            data[i][j] = dist(gen);
+            data[i][j] = dist(rd); 
         }
     }
 }
+
 
 void Matrix::printMatrix() const {
     for (int i = 0; i < rows; i++)

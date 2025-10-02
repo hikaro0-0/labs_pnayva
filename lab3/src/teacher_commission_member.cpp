@@ -37,9 +37,11 @@ void TeacherCommissionMember::copyCommissionWorks(std::span<char*> otherWorks) {
         commissionWorks = new char* [otherWorks.size()];
         commissionWorksSize = static_cast<int>(otherWorks.size());
 
-        for (size_t i = 0; i < otherWorks.size(); i++) {
-            commissionWorks[i] = new char[std::strlen(otherWorks[i]) + 1];
-            std::strcpy(commissionWorks[i], otherWorks[i]);
+        for (int i = 0; i < otherWorks.size(); i++) {
+            int len = std::strlen(otherWorks[i]);
+            commissionWorks[i] = new char[len + 1];
+            std::strncpy(commissionWorks[i], otherWorks[i], len);
+            commissionWorks[i][len] = '\0';
         }
     }
 }
@@ -56,13 +58,18 @@ void TeacherCommissionMember::clearCommissionWorks() {
 void TeacherCommissionMember::addCommissionWork(const char* work) {
     auto newWorks = new char* [commissionWorksSize + 1];
 
+    
     for (int i = 0; i < commissionWorksSize; i++) {
-        newWorks[i] = new char[std::strlen(commissionWorks[i]) + 1];
-        std::strcpy(newWorks[i], commissionWorks[i]);
+        int len = std::strlen(commissionWorks[i]);
+        newWorks[i] = new char[len + 1];
+        std::strncpy(newWorks[i], commissionWorks[i], len);
+        newWorks[i][len] = '\0';
     }
 
-    newWorks[commissionWorksSize] = new char[std::strlen(work) + 1];
-    std::strcpy(newWorks[commissionWorksSize], work);
+    int len = std::strlen(work);
+    newWorks[commissionWorksSize] = new char[len + 1];
+    std::strncpy(newWorks[commissionWorksSize], work, len);
+    newWorks[commissionWorksSize][len] = '\0';
 
     for (int i = 0; i < commissionWorksSize; i++) {
         delete[] commissionWorks[i];
