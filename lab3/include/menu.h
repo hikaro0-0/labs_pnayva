@@ -12,4 +12,4 @@ void workWithHuman(Human*& human);
 void workWithUniversityTeacher(universityTeacher*& teacher);
 void workWithCommissionMember(commissionMember*& member);
 void workWithTeacherCommissionMember(TeacherCommissionMember*& teacherMember);
-void showAllData(Human* human, universityTeacher* teacher, commissionMember* member, TeacherCommissionMember* teacherMember);
+void showAllData(const Human* human, const universityTeacher* teacher, const commissionMember* member, const TeacherCommissionMember* teacherMember);

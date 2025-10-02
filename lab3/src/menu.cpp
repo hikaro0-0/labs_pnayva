@@ -98,7 +98,7 @@ void workWithTeacherCommissionMember(TeacherCommissionMember*& teacherMember) {
     teacherMember->showInfo();
 }
 
-void showAllData(Human* human, universityTeacher* teacher, commissionMember* member, TeacherCommissionMember* teacherMember) {
+void showAllData(const Human* human, const universityTeacher* teacher, const commissionMember* member, const TeacherCommissionMember* teacherMember) {
     std::cout << "\n=== ÂÑÅ ÂÂÅÄÅÍÍÛÅ ÄÀÍÍÛÅ ===" << std::endl;
 
     if (human) {
