@@ -19,6 +19,6 @@ public:
     void addCommissionWork(const char* work);
     void inputCommissionWorks();
 
-    virtual void inputData() override;
-    virtual void showInfo() const override;
+    void inputData() override;
+    void showInfo() const override;
 };

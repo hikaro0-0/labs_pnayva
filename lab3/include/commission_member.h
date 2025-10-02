@@ -2,7 +2,7 @@
 #include "human.h"
 
 class commissionMember : virtual public Human {
-protected:
+public:
     char* commissionName;
     int appointmentYear;
     char* certificateNumber;
@@ -15,12 +15,12 @@ protected:
 public:
     commissionMember(const char* first = "", const char* last = "", const char* middle = "", const char* birth = "",
         const char* commission = "", int year = 0, const char* certificate = "");
-    commissionMember(const commissionMember& other);
-    virtual ~commissionMember();
+    //commissionMember(const commissionMember& other);
+    ~commissionMember() override;
 
     void addAutobiographyEntry(const char* entry);
     void inputAutobiography();
 
-    virtual void inputData() override;
-    virtual void showInfo() const override;
+    void inputData() override;
+    void showInfo() const override;
 };

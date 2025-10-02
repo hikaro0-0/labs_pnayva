@@ -7,13 +7,13 @@ commissionMember::commissionMember(const char* first, const char* last, const ch
     setString(certificateNumber, certificate);
 }
 
-commissionMember::commissionMember(const commissionMember& other)
-    : Human(other), commissionName(nullptr), appointmentYear(other.appointmentYear),
-    certificateNumber(nullptr), autobiography(nullptr), autobiographySize(0) {
-    setString(commissionName, other.commissionName);
-    setString(certificateNumber, other.certificateNumber);
-    copyAutobiography(other.autobiography, other.autobiographySize);
-}
+//commissionMember::commissionMember(const commissionMember& other)
+//    : Human(other), commissionName(nullptr), appointmentYear(other.appointmentYear),
+//    certificateNumber(nullptr), autobiography(nullptr), autobiographySize(0) {
+//    setString(commissionName, other.commissionName);
+//    setString(certificateNumber, other.certificateNumber);
+//    copyAutobiography(other.autobiography, other.autobiographySize);
+//}
 
 commissionMember::~commissionMember() {
     delete[] commissionName;

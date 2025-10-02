@@ -2,12 +2,12 @@
 #include "common.h"
 
 class Human {
-protected:
+private:
     char* firstName;
     char* middleName;
     char* lastName;
     char* birthDay;
-
+protected:
     void setString(char*& dest, const char* src);
 
 public:
