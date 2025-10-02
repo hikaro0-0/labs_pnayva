@@ -13,7 +13,7 @@ public:
     void clearAutobiography();
 
     explicit commissionMember(const char* first = "", const char* last = "", const char* middle = "", const char* birth = "",
-        const char* commission = "", [[maybe_unused]] int year=0, const char* certificate = "");
+        const char* commission = "", [[maybe_unused]] int year=2019, const char* certificate = "");
   
 
     void addAutobiographyEntry(const char* entry);

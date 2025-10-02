@@ -11,12 +11,17 @@ private:
     void clearCommissionWorks();
 
 public:
-
     using universityTeacher::setString;
 
-    explicit TeacherCommissionMember(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "",
-        const char* pos = "", const char* degree = "", const char* spec = "",
-        const char* commission = "", int year = 2015, const char* certificate = "");
+    explicit TeacherCommissionMember(const char* first = "", const char* last = "",
+        const char* birth = "", const char* pos = "");
+
+    void setMiddleName(const char* middle);
+    void setDegree(const char* degree);
+    void setSpecialty(const char* spec);
+    void setCommission(const char* commission);
+    void setAppointmentYear(int year);
+    void setCertificate(const char* certificate);
 
     void addCommissionWork(const char* work);
     void inputCommissionWorks();

@@ -1,6 +1,10 @@
 #pragma once
+#include "human.h"
+#include "university_teacher.h"
+#include "commission_member.h"
+#include "teacher_commission_member.h"
+#include <iostream>
 
-// Предварительные объявления классов (forward declarations)
 class Human;
 class universityTeacher;
 class commissionMember;

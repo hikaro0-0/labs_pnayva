@@ -1,11 +1,34 @@
 #include "teacher_commission_member.h"
 
-TeacherCommissionMember::TeacherCommissionMember(const char* first, const char* middle, const char* last, const char* birth,
-    const char* pos, const char* degree, const char* spec,
-    const char* commission, int year, const char* certificate)
-    : universityTeacher(first, middle, last, birth, pos, degree, spec),
-    commissionMember(first, middle, last, birth, commission, year, certificate) {}
+TeacherCommissionMember::TeacherCommissionMember(const char* first, const char* last,
+    const char* birth, const char* pos)
+    : universityTeacher(first, "", last, birth, pos, "", ""),
+    commissionMember(first, "", last, birth, "", 0, "") {}
 
+void TeacherCommissionMember::setMiddleName(const char* middle) {
+    setString(universityTeacher::middleName, middle);
+    setString(commissionMember::middleName, middle);
+}
+
+void TeacherCommissionMember::setDegree(const char* degree) {
+    setString(academicDegree, degree);
+}
+
+void TeacherCommissionMember::setSpecialty(const char* spec) {
+    setString(specialty, spec);
+}
+
+void TeacherCommissionMember::setCommission(const char* commission) {
+    setString(commissionName, commission);
+}
+
+void TeacherCommissionMember::setAppointmentYear(int year) {
+    appointmentYear = year;
+}
+
+void TeacherCommissionMember::setCertificate(const char* certificate) {
+    setString(certificateNumber, certificate);
+}
 
 void TeacherCommissionMember::copyCommissionWorks(std::span<char*> otherWorks) {
     clearCommissionWorks();
@@ -65,7 +88,6 @@ void TeacherCommissionMember::inputCommissionWorks() {
 void TeacherCommissionMember::inputData() {
     universityTeacher::inputData();
 
-    // Затем дополняем информацией о комиссии
     std::string buffer;
 
     std::cout << "Введите название комиссии: ";

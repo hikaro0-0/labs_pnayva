@@ -2,7 +2,7 @@
 #include "common.h"
 
 class Human {
-private:
+public:
     char* firstName=nullptr;
     char* middleName=nullptr;
     char* lastName=nullptr;
@@ -10,8 +10,18 @@ private:
 protected:
     void setString(char*& dest, const char* src);
 
+
 public:
-    explicit Human(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "");
+
+
+
+    explicit Human(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "") {
+
+        setString(firstName, first);
+        setString(middleName, middle);
+        setString(lastName, last);
+        setString(birthDay, birth);
+    }
 
     const char* getFirstName() const { return firstName; }
     const char* getLastName() const { return lastName; }

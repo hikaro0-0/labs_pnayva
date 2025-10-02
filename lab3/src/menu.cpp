@@ -1,11 +1,6 @@
 #include "menu.h"
-#include "human.h"
-#include "university_teacher.h"
-#include "commission_member.h"
-#include "teacher_commission_member.h"
 #include "common.h"
 
-// Реализации функций остаются такими же, как в предыдущем ответе
 void showMainMenu() {
     std::cout << "\n=== ГЛАВНОЕ МЕНЮ ===" << std::endl;
     std::cout << "1. Демонстрация с предустановленными значениями" << std::endl;
@@ -21,7 +16,6 @@ void showMainMenu() {
 void demoWithPredefinedData(Human*& human, universityTeacher*& teacher, commissionMember*& member, TeacherCommissionMember*& teacherMember) {
     std::cout << "\n=== ДЕМОНСТРАЦИЯ С УСТАНОВЛЕННЫМИ ЗНАЧЕНИЯМИ ===" << std::endl;
 
-    // Создаем объекты с предустановленными значениями
     human = new Human("Анна", "Иванова", "Сергеевна", "20.03.1990");
 
     teacher = new universityTeacher("Петр", "Сидоров", "Васильевич", "15.08.1975",
@@ -34,11 +28,14 @@ void demoWithPredefinedData(Human*& human, universityTeacher*& teacher, commissi
     member->addAutobiographyEntry("Окончила СПбГУ в 2007 году");
     member->addAutobiographyEntry("Работала в научно-исследовательском институте");
 
-    teacherMember = new TeacherCommissionMember(
-        "Иван", "Петров", "Сергеевич", "15.05.1980",
-        "Профессор", "Доктор наук", "Информатика",
-        "Экзаменационная комиссия", 2020, "СВ-12345"
-    );
+    teacherMember = new TeacherCommissionMember("Иван", "Петров", "15.05.1980", "Профессор");
+    teacherMember->setMiddleName("Сергеевич");
+    teacherMember->setDegree("Доктор наук");
+    teacherMember->setSpecialty("Информатика");
+    teacherMember->setCommission("Экзаменационная комиссия");
+    teacherMember->setAppointmentYear(2020);
+    teacherMember->setCertificate("СВ-12345");
+
     teacherMember->addScientificWorks("Исследование алгоритмов машинного обучения");
     teacherMember->addScientificWorks("Разработка интеллектуальных систем");
     teacherMember->addAutobiographyEntry("Окончил МГУ в 2002 году");
@@ -48,7 +45,6 @@ void demoWithPredefinedData(Human*& human, universityTeacher*& teacher, commissi
     teacherMember->addCommissionWork("Организация вступительных экзаменов");
     teacherMember->addCommissionWork("Проверка выпускных квалификационных работ");
 
-    // Показываем все созданные объекты
     std::cout << "\n--- БАЗОВЫЙ КЛАСС HUMAN ---" << std::endl;
     human->showInfo();
 
@@ -64,7 +60,10 @@ void demoWithPredefinedData(Human*& human, universityTeacher*& teacher, commissi
 
 void workWithHuman(Human*& human) {
     std::cout << "\n=== РАБОТА С БАЗОВЫМ КЛАССОМ HUMAN ===" << std::endl;
-    if (human) delete human;
+    if (human) {
+        delete human;
+        human = nullptr;
+    }
     human = new Human();
     human->inputData();
     std::cout << "\n=== ВВЕДЕННЫЕ ДАННЫЕ HUMAN ===" << std::endl;
@@ -73,7 +72,10 @@ void workWithHuman(Human*& human) {
 
 void workWithUniversityTeacher(universityTeacher*& teacher) {
     std::cout << "\n=== РАБОТА С КЛАССОМ UNIVERSITYTEACHER ===" << std::endl;
-    if (teacher) delete teacher;
+    if (teacher) {
+        delete teacher;
+        teacher = nullptr;
+    }
     teacher = new universityTeacher();
     teacher->inputData();
     std::cout << "\n=== ВВЕДЕННЫЕ ДАННЫЕ UNIVERSITYTEACHER ===" << std::endl;
@@ -82,7 +84,10 @@ void workWithUniversityTeacher(universityTeacher*& teacher) {
 
 void workWithCommissionMember(commissionMember*& member) {
     std::cout << "\n=== РАБОТА С КЛАССОМ COMMISSIONMEMBER ===" << std::endl;
-    if (member) delete member;
+    if (member) {
+        delete member;
+        member = nullptr;
+    }
     member = new commissionMember();
     member->inputData();
     std::cout << "\n=== ВВЕДЕННЫЕ ДАННЫЕ COMMISSIONMEMBER ===" << std::endl;
@@ -91,7 +96,10 @@ void workWithCommissionMember(commissionMember*& member) {
 
 void workWithTeacherCommissionMember(TeacherCommissionMember*& teacherMember) {
     std::cout << "\n=== РАБОТА С КЛАССОМ TEACHERCOMMISSIONMEMBER ===" << std::endl;
-    if (teacherMember) delete teacherMember;
+    if (teacherMember) {
+        delete teacherMember;
+        teacherMember = nullptr;
+    }
     teacherMember = new TeacherCommissionMember();
     teacherMember->inputData();
     std::cout << "\n=== ВВЕДЕННЫЕ ДАННЫЕ TEACHERCOMMISSIONMEMBER ===" << std::endl;
