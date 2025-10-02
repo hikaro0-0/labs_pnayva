@@ -8,21 +8,6 @@ universityTeacher::universityTeacher(const char* first, const char* middle, cons
     setString(specialty, spec);
 }
 
-//universityTeacher::universityTeacher(const universityTeacher& other)
-//    : Human(other), jobTitle(nullptr), academicDegree(nullptr),
-//    specialty(nullptr), ScientificWorks(nullptr), workSize(0) {
-//    setString(jobTitle, other.jobTitle);
-//    setString(academicDegree, other.academicDegree);
-//    setString(specialty, other.specialty);
-//    copyScientificWorks(other.ScientificWorks, other.workSize);
-//}
-
-universityTeacher::~universityTeacher() {
-    delete[] jobTitle;
-    delete[] academicDegree;
-    delete[] specialty;
-    clearScientificWorks();
-}
 
 void universityTeacher::copyScientificWorks(std::span<char*> otherWorks) {
     clearScientificWorks();

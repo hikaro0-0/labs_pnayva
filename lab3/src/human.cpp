@@ -9,28 +9,13 @@ void Human::setString(char*& dest, const char* src) {
     else dest = nullptr;
 }
 
-Human::Human(const char* first, const char* middle, const char* last, const char* birth) :
-    firstName(nullptr), middleName(nullptr), lastName(nullptr), birthDay(nullptr) {
+Human::Human(const char* first, const char* middle, const char* last, const char* birth) {
     setString(firstName, first);
     setString(middleName, middle);
     setString(lastName, last);
     setString(birthDay, birth);
 }
 
-//Human::Human(const Human& other) :
-//    firstName(nullptr), middleName(nullptr), lastName(nullptr), birthDay(nullptr) {
-//    setString(firstName, other.firstName);
-//    setString(middleName, other.middleName);
-//    setString(lastName, other.lastName);
-//    setString(birthDay, other.birthDay);
-//}
-
-Human::~Human() {
-    delete[] firstName;
-    delete[] middleName;
-    delete[] lastName;
-    delete[] birthDay;
-}
 
 void Human::inputData() {
     std::string buffer;

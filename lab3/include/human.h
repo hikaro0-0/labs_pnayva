@@ -3,17 +3,15 @@
 
 class Human {
 private:
-    char* firstName;
-    char* middleName;
-    char* lastName;
-    char* birthDay;
+    char* firstName=nullptr;
+    char* middleName=nullptr;
+    char* lastName=nullptr;
+    char* birthDay=nullptr;
 protected:
     void setString(char*& dest, const char* src);
 
 public:
     explicit Human(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "");
-    //Human(const Human& other);
-    virtual ~Human();
 
     const char* getFirstName() const { return firstName; }
     const char* getLastName() const { return lastName; }

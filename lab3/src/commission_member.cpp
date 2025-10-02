@@ -1,25 +1,12 @@
 #include "commission_member.h"
 
 commissionMember::commissionMember(const char* first, const char* last, const char* middle, const char* birth,
-    const char* commission, int year, const char* certificate) : Human(first, last, middle, birth)   {
+    const char* commission, [[maybe_unused]] int year, const char* certificate) : Human(first, last, middle, birth)   {
     setString(commissionName, commission);
 
     setString(certificateNumber, certificate);
 }
 
-//commissionMember::commissionMember(const commissionMember& other)
-//    : Human(other), commissionName(nullptr), appointmentYear(other.appointmentYear),
-//    certificateNumber(nullptr), autobiography(nullptr), autobiographySize(0) {
-//    setString(commissionName, other.commissionName);
-//    setString(certificateNumber, other.certificateNumber);
-//    copyAutobiography(other.autobiography, other.autobiographySize);
-//}
-
-//commissionMember::~commissionMember() {
-//    delete[] commissionName;
-//    delete[] certificateNumber;
-//    clearAutobiography();
-//}
 
 void commissionMember::copyAutobiography(std::span<char*> otherAutobiography) {
     clearAutobiography();

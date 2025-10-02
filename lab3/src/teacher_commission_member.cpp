@@ -6,9 +6,6 @@ TeacherCommissionMember::TeacherCommissionMember(const char* first, const char* 
     : universityTeacher(first, middle, last, birth, pos, degree, spec),
     commissionMember(first, middle, last, birth, commission, year, certificate) {}
 
-TeacherCommissionMember::~TeacherCommissionMember() {
-    clearCommissionWorks();
-}
 
 void TeacherCommissionMember::copyCommissionWorks(std::span<char*> otherWorks) {
     clearCommissionWorks();
@@ -55,13 +52,13 @@ void TeacherCommissionMember::addCommissionWork(const char* work) {
 
 void TeacherCommissionMember::inputCommissionWorks() {
     std::cout << "¬вод работ в комиссии (дл€ завершени€ введите пустую строку):" << std::endl;
-    char buffer[200];
+    std::string buffer;
 
     while (true) {
         std::cout << "¬ведите работу в комиссии: ";
-        std::cin.getline(buffer, 200);
-        if (strlen(buffer) == 0) break;
-        addCommissionWork(buffer);
+        std::getline(std::cin, buffer);
+        if (buffer.empty()) break;
+        addCommissionWork(buffer.c_str());
     }
 }
 

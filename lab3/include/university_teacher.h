@@ -14,9 +14,7 @@ public:
 
     explicit universityTeacher(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "",
         const char* title = "", const char* degree = "", const char* spec = "");
-    //universityTeacher(const universityTeacher& other);
-    ~universityTeacher() override;
-
+ 
     void addScientificWorks(const char* work);
     void inputScientificWorks();
 
