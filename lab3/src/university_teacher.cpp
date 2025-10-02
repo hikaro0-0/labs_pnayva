@@ -2,7 +2,7 @@
 
 universityTeacher::universityTeacher(const char* first, const char* middle, const char* last, const char* birth,
     const char* title, const char* degree, const char* spec) : Human(first, middle, last, birth) {
-    // workSize уже инициализирован в классе значением 0
+    
     setString(jobTitle, title);
     setString(academicDegree, degree);
     setString(specialty, spec);
