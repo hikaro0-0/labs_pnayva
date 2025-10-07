@@ -16,9 +16,9 @@ public:
     Matrix(int r, int c);
     ~Matrix();
     Matrix(const Matrix& other);
-    Matrix(Matrix&& other);
+    Matrix(Matrix&& other) noexcept;
     Matrix& operator=(const Matrix& other);
-    Matrix& operator=(Matrix&& other);
+    Matrix& operator=(Matrix&& other) noexcept;
 
     void fillMatrixManual() const ;
     void fillMatrixAuto(int minVal, int maxVal) const ;
