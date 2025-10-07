@@ -109,7 +109,7 @@ void Matrix::printMatrix() const {
     {
         for (int j = 0; j < cols; j++)
         {
-            std::cout << data[i][j] << " ";
+            std::cout << data[i][j] << " \t";
         }
         std::cout << std::endl;
     }
