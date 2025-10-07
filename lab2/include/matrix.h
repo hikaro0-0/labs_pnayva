@@ -21,10 +21,6 @@ public:
     const int& at(int row, int col) const;
 
     friend Matrix operator&(const Matrix& lhs, const Matrix& rhs) {
-        if (lhs.cols_ != rhs.rows_) {
-            throw std::invalid_argument("Матрицы не могут быть перемножены");
-        }
-
         Matrix result(lhs.rows_, rhs.cols_);
 
         for (int i = 0; i < lhs.rows_; ++i) {
