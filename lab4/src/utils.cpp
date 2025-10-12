@@ -4,7 +4,7 @@
 
 void clear_buf() {
     char c;
-    while (std::cin.get(c) && c != '\n') {}
+    while (std::cin.get(c) && c != '\n');
 }
 
 double getInput(const std::string& prompt) {
@@ -64,7 +64,7 @@ Figure* choose_figure() {
     std::cout << "0 - Выход" << std::endl;
 
     int choice;
-    while (1) {
+    while (true) {
         std::cout << "(0-3): " << std::endl;
         std::cin >> choice;
         if (choice >= 0 && choice <= 3) {

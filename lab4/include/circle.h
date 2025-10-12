@@ -5,7 +5,7 @@ class Circle : public Figure {
 private:
     double radius;
 public:
-    Circle(double r);
+    explicit Circle(double r);
     double area() const override;
     double perimeter() const override;
     void print() const override;
