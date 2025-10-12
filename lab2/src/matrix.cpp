@@ -1,9 +1,6 @@
 #include "matrix.h"
 
 Matrix::Matrix(int rows, int cols) : rows_(rows), cols_(cols), data_() {
-    if (rows <= 0 || cols <= 0) {
-        throw std::invalid_argument("Столбцы и строки должны быть положительными");
-    }
     AllocateMemory();
 }
 

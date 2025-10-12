@@ -14,6 +14,7 @@ class Matrix {
 
 public:
     Matrix(int r, int c);
+
     ~Matrix();
     Matrix(const Matrix& other);
     Matrix(Matrix&& other) noexcept;
