@@ -3,8 +3,8 @@
 commissionMember::commissionMember(const char* first, const char* last, const char* middle, const char* birth,
     const char* commission, [[maybe_unused]] int year, const char* certificate) : Human(first, last, middle, birth)   {
     setString(commissionName, commission);
-
     setString(certificateNumber, certificate);
+    appointmentYear = year;
 }
 
 
@@ -19,7 +19,7 @@ void commissionMember::copyAutobiography(std::span<char*> otherAutobiography) {
             int len = std::strlen(otherAutobiography[i]);
             autobiography[i] = new char[len + 1];
             std::strncpy(autobiography[i], otherAutobiography[i], len);
-            autobiography[i][len] = '\0'; // Гарантируем нулевое завершение
+            autobiography[i][len] = '\0';
         }
     }
 }

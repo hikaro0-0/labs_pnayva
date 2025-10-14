@@ -3,7 +3,7 @@
 TeacherCommissionMember::TeacherCommissionMember(const char* first, const char* last,
     const char* birth, const char* pos)
     : universityTeacher(first, "", last, birth, pos, "", ""),
-    commissionMember(first, "", last, birth, "", 0, "") {}
+    commissionMember(first, "", last, birth, "", 2019, "") {}
 
 void TeacherCommissionMember::setMiddleName(const char* middle) {
     setString(universityTeacher::middleName, middle);

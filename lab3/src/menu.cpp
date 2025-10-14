@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "common.h"
+#include "consts.h"
 
 void showMainMenu() {
     std::cout << "\n=== ГЛАВНОЕ МЕНЮ ===" << std::endl;
@@ -23,7 +24,7 @@ void demoWithPredefinedData(Human*& human, universityTeacher*& teacher, commissi
     teacher->addScientificWorks("Применение численных методов");
 
     member = new commissionMember("Мария", "Козлова", "Алексеевна", "10.12.1985",
-        "Аттестационная комиссия", 2019, "СВ-54321");
+        "Аттестационная комиссия", CommisMembAppYear, "СВ-54321");
     member->addAutobiographyEntry("Окончила СПбГУ в 2007 году");
     member->addAutobiographyEntry("Работала в научно-исследовательском институте");
 
@@ -32,7 +33,7 @@ void demoWithPredefinedData(Human*& human, universityTeacher*& teacher, commissi
     teacherMember->setDegree("Доктор наук");
     teacherMember->setSpecialty("Информатика");
     teacherMember->setCommission("Экзаменационная комиссия");
-    teacherMember->setAppointmentYear(2020);
+    teacherMember->setAppointmentYear(TeachCommisMembAppYear);
     teacherMember->setCertificate("СВ-12345");
 
     teacherMember->addScientificWorks("Исследование алгоритмов машинного обучения");
