@@ -11,10 +11,10 @@ class SingleLinkedList {
 private:
     struct Node {
         T data;
-        Node* next;
+        Node* next=nullptr;
 
-        Node(const T& value) : data(value), next(nullptr) {}
-        Node(T&& value) : data(std::move(value)), next(nullptr) {}
+        explicit Node(const T& value) : data(value), next {}
+        explicit Node(T&& value) : data(std::move(value)), next {}
     };
 
     Node* head = nullptr;

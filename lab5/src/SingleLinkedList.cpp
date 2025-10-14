@@ -5,7 +5,7 @@
 
 template <typename T>
 void SingleLinkedList<T>::push_back(const T& value) {
-    Node* newNode = new Node(value);
+    auto* newNode = new Node(value);
     if (!head) {
         head = newNode;
         tail = newNode;
@@ -19,7 +19,7 @@ void SingleLinkedList<T>::push_back(const T& value) {
 
 template <typename T>
 void SingleLinkedList<T>::push_back(T&& value) {
-    Node* newNode = new Node(std::move(value));
+    auto* newNode = new Node(std::move(value));
     if (!head) {
         head = newNode;
         tail = newNode;
@@ -44,13 +44,20 @@ void SingleLinkedList<T>::print() const {
 template <typename T>
 void SingleLinkedList<T>::input() {
     std::cout << "¬ведите элементы списка (дл€ завершени€ введите 'end'): " << std::endl;
+
     while (true) {
         T value;
-        if constexpr (std::is_same_v <T, std::string>) {
+        bool shouldBreak = false;
+
+        if constexpr (std::is_same_v<T, std::string>) {
             std::string input;
             std::getline(std::cin, input);
-            if (input == "end") break;
-            value = input;
+            if (input == "end") {
+                shouldBreak = true;
+            }
+            else {
+                value = input;
+            }
         }
         else {
             if (!(std::cin >> value)) {
@@ -58,9 +65,11 @@ void SingleLinkedList<T>::input() {
                 std::string tempString;
                 std::getline(std::cin, tempString);
                 std::cout << "¬вод завершЄн." << std::endl;
-                break;
+                shouldBreak = true;
             }
         }
+
+        if (shouldBreak) break;
         push_back(std::move(value));
     }
 }
