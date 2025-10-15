@@ -4,7 +4,6 @@ commissionMember::commissionMember(const char* first, const char* last, const ch
     const char* commission, [[maybe_unused]] int year, const char* certificate) : Human(first, last, middle, birth)   {
     setString(commissionName, commission);
     setString(certificateNumber, certificate);
-    appointmentYear = year;
 }
 
 

@@ -4,7 +4,7 @@
 class commissionMember : public Human {
 public:
     char* commissionName=nullptr;
-    int appointmentYear;
+    int appointmentYear=2019;
     char* certificateNumber=nullptr;
     char** autobiography=nullptr;
     int autobiographySize = 0;
