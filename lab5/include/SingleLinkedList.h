@@ -3,18 +3,18 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 #include <locale>
-#include "my_move.h"
 
 template <typename T>
 class SingleLinkedList {
 private:
     struct Node {
         T data;
-        Node* next=nullptr;
+        Node* next = nullptr;
 
-        explicit Node(const T& value) : data(value), next {}
-        explicit Node(T&& value) : data(std::move(value)), next {}
+        explicit Node(const T& value) : data(value), next() {}
+        explicit Node(T&& value) : data(std::move(value)), next() {}
     };
 
     Node* head = nullptr;
