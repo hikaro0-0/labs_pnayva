@@ -109,39 +109,35 @@ void workWithTeacherCommissionMember(TeacherCommissionMember*& teacherMember) {
 void showAllData(const Human* human, const universityTeacher* teacher, const commissionMember* member, const TeacherCommissionMember* teacherMember) {
     std::cout << "\n=== ÂÑÅ ÂÂÅÄÅÍÍÛÅ ÄÀÍÍÛÅ ===" << std::endl;
 
+    std::cout << "\n--- ÁÀÇÎÂÛÉ ÊËÀÑÑ HUMAN ---" << std::endl;
     if (human) {
-        std::cout << "\n--- ÁÀÇÎÂÛÉ ÊËÀÑÑ HUMAN ---" << std::endl;
         human->showInfo();
     }
     else {
-        std::cout << "\n--- ÁÀÇÎÂÛÉ ÊËÀÑÑ HUMAN ---" << std::endl;
         std::cout << "Äàííûå íå ââåäåíû" << std::endl;
     }
 
-    if (teacher) {
-        std::cout << "\n--- ÊËÀÑÑ UNIVERSITYTEACHER ---" << std::endl;
+    std::cout << "\n--- ÊËÀÑÑ UNIVERSITYTEACHER ---" << std::endl;
+    if (teacher) {  
         teacher->showInfo();
     }
-    else {
-        std::cout << "\n--- ÊËÀÑÑ UNIVERSITYTEACHER ---" << std::endl;
+    else {   
         std::cout << "Äàííûå íå ââåäåíû" << std::endl;
     }
 
+    std::cout << "\n--- ÊËÀÑÑ COMMISSIONMEMBER ---" << std::endl;
     if (member) {
-        std::cout << "\n--- ÊËÀÑÑ COMMISSIONMEMBER ---" << std::endl;
         member->showInfo();
     }
     else {
-        std::cout << "\n--- ÊËÀÑÑ COMMISSIONMEMBER ---" << std::endl;
         std::cout << "Äàííûå íå ââåäåíû" << std::endl;
     }
 
+    std::cout << "\n--- ÊËÀÑÑ TEACHERCOMMISSIONMEMBER ---" << std::endl;
     if (teacherMember) {
-        std::cout << "\n--- ÊËÀÑÑ TEACHERCOMMISSIONMEMBER ---" << std::endl;
         teacherMember->showInfo();
     }
     else {
-        std::cout << "\n--- ÊËÀÑÑ TEACHERCOMMISSIONMEMBER ---" << std::endl;
         std::cout << "Äàííûå íå ââåäåíû" << std::endl;
     }
 }
