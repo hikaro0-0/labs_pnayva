@@ -3,8 +3,10 @@
 void Human::setString(char*& dest, const char* src) {
     delete[] dest;
     if (src) {
-        dest = new char[std::strlen(src) + 1];
-        std::strcpy(dest, src);
+        int len = std::strlen(src);
+        dest = new char[len + 1];
+        std::strncpy(dest, src, len);
+        dest[len] = '\0';
     }
     else dest = nullptr;
 }
