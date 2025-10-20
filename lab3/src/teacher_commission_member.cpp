@@ -1,9 +1,9 @@
 #include "teacher_commission_member.h"
-
+#include "consts.h"
 TeacherCommissionMember::TeacherCommissionMember(const char* first, const char* last,
     const char* birth, const char* pos)
     : universityTeacher(first, "", last, birth, pos, "", ""),
-    commissionMember(first, "", last, birth, "", 2019, "") {}
+    commissionMember(first, "", last, birth, "", CommisMembAppYear, "") {}
 
 void TeacherCommissionMember::setMiddleName(const char* middle) {
     setString(universityTeacher::middleName, middle);

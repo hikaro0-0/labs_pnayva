@@ -12,9 +12,6 @@ protected:
 
 
 public:
-
-
-
     explicit Human(const char* first = "", const char* middle = "", const char* last = "", const char* birth = "") {
 
         setString(firstName, first);

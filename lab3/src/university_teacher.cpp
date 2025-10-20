@@ -62,7 +62,7 @@ void universityTeacher::addScientificWorks(const char* work) {
 }
 
 void universityTeacher::inputScientificWorks() {
-    std::cout << "¬вод научных работ (дл€ завершени€ введите пустую строку):" << std::endl;
+    std::cout << "¬вод научных работ (дл€ завершени€ введите пустую строку): " << std::endl;
     std::string buffer;
 
     while (true) {
