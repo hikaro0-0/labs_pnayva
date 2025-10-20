@@ -20,11 +20,9 @@ void commissionMember::copyAutobiography(std::span<char*> otherAutobiography) {
 
     for (size_t i = 0; i < size; ++i) {
         if (otherAutobiography[i] != nullptr) {
-            const size_t len = std::strlen(otherAutobiography[i]);
-            autobiography[i] = new (std::nothrow) char[len + 1];
-            if (autobiography[i] != nullptr) {
-                std::strcpy(autobiography[i], otherAutobiography[i]);
-            }
+            size_t len = std::strlen(otherAutobiography[i]);
+            autobiography[i] = new char[len + 1]; 
+            std::strcpy(autobiography[i], otherAutobiography[i]); 
         }
     }
 }
