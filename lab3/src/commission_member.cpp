@@ -10,19 +10,21 @@ commissionMember::commissionMember(const char* first, const char* last, const ch
 void commissionMember::copyAutobiography(std::span<char*> otherAutobiography) {
     clearAutobiography();
 
-    if (!otherAutobiography.empty()) {
-        autobiography = new char* [otherAutobiography.size()];
-        autobiographySize = static_cast<int>(otherAutobiography.size());
+    if (otherAutobiography.empty()) {
+        return;
+    }
 
-        for (int i = 0; i < otherAutobiography.size(); i++) {
-            if (!otherAutobiography[i]) {
-                autobiography[i] = nullptr;
-                continue;
+    const size_t size = otherAutobiography.size();
+    autobiography = new char* [size]();
+    autobiographySize = static_cast<int>(size);
+
+    for (size_t i = 0; i < size; ++i) {
+        if (otherAutobiography[i] != nullptr) {
+            const size_t len = std::strlen(otherAutobiography[i]);
+            autobiography[i] = new (std::nothrow) char[len + 1];
+            if (autobiography[i] != nullptr) {
+                std::strcpy(autobiography[i], otherAutobiography[i]);
             }
-            int len = std::strlen(otherAutobiography[i]);
-            autobiography[i] = new char[len + 1];
-            std::strncpy(autobiography[i], otherAutobiography[i], len);
-            autobiography[i][len] = '\0';
         }
     }
 }
