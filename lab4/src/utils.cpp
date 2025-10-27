@@ -67,15 +67,21 @@ bool isValid(double bot_side, double top_side, double left_side, double right_si
 
 Trapezoid* create_trapezoid() {
     std::cout << "\n===Создание трапеции===" << std::endl;
-    double bot_side = getInput("Введите нижнее основание:");
-    double top_side = getInput("Введите верхнее основание: ");
-    double left_side = getInput("Введите левую сторону: ");
-    double right_side = getInput("Введите правую сторону: ");
-    
-    if (isValid(bot_side, top_side, left_side, right_side)) {
-        double height = calculateHeight(bot_side, top_side, left_side, right_side);
 
-        return new Trapezoid(bot_side, top_side, left_side, right_side, height);
+    while (true) {
+        double bot_side = getInput("Введите нижнее основание:");
+        double top_side = getInput("Введите верхнее основание: ");
+        double left_side = getInput("Введите левую сторону: ");
+        double right_side = getInput("Введите правую сторону: ");
+
+        if (isValid(bot_side, top_side, left_side, right_side)) {
+            double height = calculateHeight(bot_side, top_side, left_side, right_side);
+            return new Trapezoid(bot_side, top_side, left_side, right_side, height);
+        }
+        else {
+            std::cout << "Ошибка: Невозможно создать трапецию с такими сторонами!" << std::endl;
+            std::cout << "Попробуйте снова." << std::endl;
+        }
     }
 }
 
