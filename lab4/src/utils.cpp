@@ -38,7 +38,7 @@ Rectangle* create_rectangle() {
 
 double calculateHeight(double a, double b, double c, double d) {
     double pre_result;
-    pre_result = std::abs((c * c - pow((a - b) / 2.0 + (c * c - d * d) / (2.0 * (a - b)), 2)));
+    pre_result = std::abs(c * c - pow((a - b) / 2.0 + (c * c - d * d) / (2.0 * (a - b)), 2));
     return std::sqrt(pre_result);
 }
 
@@ -48,15 +48,13 @@ bool isValid(double bot_side, double top_side, double left_side, double right_si
         return false;
     }
 
-    double base_diff = std::abs(bot_side - top_side);
-    if (base_diff > (left_side + right_side)) {
+    if (double base_diff = std::abs(bot_side - top_side); base_diff > (left_side + right_side)) {
         std::cout << "Сумма оснований должна быть меньше суммы боковых сторон" << std::endl;
         return false;
     }
 
     double perimeter = bot_side + top_side + left_side + right_side;
-    double max_side = std::max({ bot_side, top_side, left_side, right_side });
-    if (max_side >= perimeter - max_side) {
+    if( double max_side = std::max({ bot_side, top_side, left_side, right_side }); max_side >= perimeter - max_side) { 
         std::cout << "Не выполняется неравенство четырехугольника!" << std::endl;
         return false;
    }
