@@ -12,4 +12,3 @@ double calculateHeight(double a, double b, double c, double d);
 Trapezoid* create_trapezoid();
 Figure* choose_figure();
 void demonstrateFigures();
-

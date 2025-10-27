@@ -11,9 +11,9 @@ double getInput(const std::string& prompt) {
     double value;
     std::cout << prompt;
 
-    while (!(std::cin >> value))
+    while (!(std::cin >> value) || value <=0)
     {
-        std::cout << "Ошибка! Введите число." << std::endl;
+        std::cout << "Ошибка! Введите положительно число." << std::endl;
         std::cin.clear();
         clear_buf();
     }
@@ -37,12 +37,32 @@ Rectangle* create_rectangle() {
 }
 
 double calculateHeight(double a, double b, double c, double d) {
-    double result;
-    if (a < b)
-        result = sqrt(c * c - pow((b - a) / 2.0 + (c * c - d * d) / (2.0 * (b - a)), 2));
-    else
-        result = sqrt(c * c - pow((a - b) / 2.0 + (c * c - d * d) / (2.0 * (a - b)), 2));
-    return result;
+    double pre_result;
+    pre_result = std::abs((c * c - pow((a - b) / 2.0 + (c * c - d * d) / (2.0 * (a - b)), 2)));
+    return std::sqrt(pre_result);
+}
+
+bool isValid(double bot_side, double top_side, double left_side, double right_side) {
+    if (bot_side <= 0 || top_side <= 0 || left_side <= 0 || right_side <= 0) {
+        std::cout << "Стороны трапеции должны быть положительными" << std::endl;
+        return false;
+    }
+
+    double base_diff = std::abs(bot_side - top_side);
+    if (base_diff > (left_side + right_side)) {
+        std::cout << "Сумма оснований должна быть меньше суммы боковых сторон" << std::endl;
+        return false;
+    }
+
+    double perimeter = bot_side + top_side + left_side + right_side;
+    double max_side = std::max({ bot_side, top_side, left_side, right_side });
+    if (max_side >= perimeter - max_side) {
+        std::cout << "Не выполняется неравенство четырехугольника!" << std::endl;
+        return false;
+   }
+
+
+    return true;
 }
 
 Trapezoid* create_trapezoid() {
@@ -51,9 +71,12 @@ Trapezoid* create_trapezoid() {
     double top_side = getInput("Введите верхнее основание: ");
     double left_side = getInput("Введите левую сторону: ");
     double right_side = getInput("Введите правую сторону: ");
-    double height = calculateHeight(bot_side, top_side, left_side, right_side);
+    
+    if (isValid(bot_side, top_side, left_side, right_side)) {
+        double height = calculateHeight(bot_side, top_side, left_side, right_side);
 
-    return new Trapezoid(bot_side, top_side, left_side, right_side, height);
+        return new Trapezoid(bot_side, top_side, left_side, right_side, height);
+    }
 }
 
 Figure* choose_figure() {
