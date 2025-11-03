@@ -20,7 +20,7 @@ public:
         int newLength = lhs.length + rhs.length;
         if (newLength > MyString::MAX_LENGTH)
             throw TooLongString("Ошибка: результат конкатенации слишком длинный");
-        char* newData = new char[newLength + 1];
+        auto newData = new char[newLength + 1];
         std::strcpy(newData, lhs.data);
         std::strcat(newData, rhs.data);
         MyString result(newData);
