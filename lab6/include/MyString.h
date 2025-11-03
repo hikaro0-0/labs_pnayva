@@ -22,7 +22,8 @@ public:
             throw TooLongString("Ошибка: результат конкатенации слишком длинный");
         auto newData = new char[newLength + 1];
         std::strcpy(newData, lhs.data);
-        std::strcat(newData, rhs.data);
+        //std::strcat(newData, rhs.data);
+        std::strcpy(newData + lhs.length, rhs.data);
         MyString result(newData);
         delete[] newData;
         return result;
