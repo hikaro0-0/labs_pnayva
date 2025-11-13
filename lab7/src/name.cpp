@@ -5,13 +5,13 @@
 
 Name::Name() : employeeNumber(0) {}
 
-Name::Name(const std::string& fName, const std::string& lName,
-    const std::string& mName, int empNum)
+Name::Name(std::string_view fName, std::string_view lName,
+    std::string_view mName, int empNum)
     : firstName(fName), lastName(lName), middleName(mName), employeeNumber(empNum) {}
 
-void Name::setFirstName(const std::string& fName) { firstName = fName; }
-void Name::setLastName(const std::string& lName) { lastName = lName; }
-void Name::setMiddleName(const std::string& mName) { middleName = mName; }
+void Name::setFirstName(std::string_view fName) { firstName = fName; }
+void Name::setLastName(std::string_view lName) { lastName = lName; }
+void Name::setMiddleName(std::string_view mName) { middleName = mName; }
 void Name::setEmployeeNumber(int empNum) { employeeNumber = empNum; }
 
 const std::string& Name::getFirstName() const { return firstName; }
@@ -60,7 +60,9 @@ bool Name::isEmployeeNumberExists(const std::string& filename, int empNumber) {
     }
 
     int existingNumber;
-    std::string fName, lName, mName;
+    std::string fName;
+    std::string lName;
+    std::string mName;
 
     while (inFile >> existingNumber >> lName >> fName >> mName) {
         if (existingNumber == empNumber) {
@@ -82,7 +84,9 @@ int Name::readAllEmployees(const std::string& filename, Name* employees, int max
 
     int count = 0;
     int empNum;
-    std::string fName, lName, mName;
+    std::string fName;
+    std::string lName;
+    std::string mName;
 
     while (inFile >> empNum >> lName >> fName >> mName && count < maxSize) {
         employees[count] = Name(fName, lName, mName, empNum);
@@ -93,7 +97,7 @@ int Name::readAllEmployees(const std::string& filename, Name* employees, int max
     return count;
 }
 
-void Name::writeAllEmployees(const std::string& filename, Name* employees, int count) {
+void Name::writeAllEmployees(const std::string& filename, const Name* employees, int count) {
     std::ofstream outFile(filename);
 
     if (!outFile.is_open()) {
@@ -157,7 +161,9 @@ Name* Name::readFromFile(const std::string& filename, int searchEmployeeNumber) 
 
     Name* foundName = nullptr;
     int empNum;
-    std::string fName, lName, mName;
+    std::string fName;
+    std::string lName;
+    std::string mName;
 
     while (inFile >> empNum >> lName >> fName >> mName) {
         if (empNum == searchEmployeeNumber) {
@@ -187,7 +193,9 @@ void Name::readAllFromFile(const std::string& filename) {
     std::cout << "========================" << std::endl;
 
     int empNum;
-    std::string fName, lName, mName;
+    std::string fName;
+    std::string lName;
+    std::string mName;
     int count = 0;
 
     while (inFile >> empNum >> lName >> fName >> mName) {
@@ -204,24 +212,6 @@ void Name::readAllFromFile(const std::string& filename) {
     }
 
     inFile.close();
-}
-
-std::ostream& operator<<(std::ostream& os, const Name& name) {
-    os << "є" << name.employeeNumber << ": "
-        << name.lastName << " " << name.firstName << " " << name.middleName;
-    return os;
-}
-
-std::istream& operator>>(std::istream& is, Name& name) {
-    std::cout << "¬ведите номер сотрудника: ";
-    is >> name.employeeNumber;
-    std::cout << "¬ведите фамилию: ";
-    is >> name.lastName;
-    std::cout << "¬ведите им€: ";
-    is >> name.firstName;
-    std::cout << "¬ведите отчество: ";
-    is >> name.middleName;
-    return is;
 }
 
 bool Name::isValidEmployeeNumber(int empNum) {

@@ -77,8 +77,7 @@ void workWithUserInput() {
             std::cout << "Введите номер сотрудника для поиска: ";
             std::cin >> searchNumber;
 
-            Name* foundEmp = Name::readFromFile(USER_FILENAME, searchNumber);
-            if (foundEmp != nullptr) {
+            if (Name* foundEmp = Name::readFromFile(USER_FILENAME, searchNumber)) {
                 std::cout << "Результат поиска: " << *foundEmp << std::endl;
                 delete foundEmp;
             }
