@@ -1,40 +1,40 @@
 #include "functions.h"
-#include "name.h"
+#include "Person.h"
 #include "constants.h"
 #include <iostream>
 
 void workWithPredefinedData() {
     std::cout << "=== РАБОТА С ПРЕДУСТАНОВЛЕННЫМИ ДАННЫМИ ===" << std::endl;
 
-    Name predefinedEmployees[] = {
-        Name("Иван", "Петров", "Сергеевич", 1001),
-        Name("Мария", "Сидорова", "Ивановна", 1002),
-        Name("Алексей", "Козлов", "Петрович", 1003),
-        Name("Ольга", "Николаева", "Владимировна", 1004),
-        Name("Дмитрий", "Федоров", "Александрович", 1005)
+    Person predefinedEmployees[] = {
+        Person("Иван", "Петров", "Сергеевич", 1001),
+        Person("Мария", "Сидорова", "Ивановна", 1002),
+        Person("Алексей", "Козлов", "Петрович", 1003),
+        Person("Ольга", "Николаева", "Владимировна", 1004),
+        Person("Дмитрий", "Федоров", "Александрович", 1005)
     };
 
-    Name::clearFile(PREDEFINED_FILENAME);
+    Person::clearFile(PREDEFINED_FILENAME);
 
     std::cout << "Запись предустановленных данных в файл..." << std::endl;
     for (const auto& emp : predefinedEmployees) {
-        Name::writeToFile(emp, PREDEFINED_FILENAME);
+        Person::writeToFile(emp, PREDEFINED_FILENAME);
     }
 
-    Name::readAllFromFile(PREDEFINED_FILENAME);
+    Person::readAllFromFile(PREDEFINED_FILENAME);
 
     std::cout << "\nДемонстрация удаления сотрудника №1003:" << std::endl;
-    Name::deleteEmployeeByNumber(PREDEFINED_FILENAME, 1003);
+    Person::deleteEmployeeByNumber(PREDEFINED_FILENAME, 1003);
 
     std::cout << "\nОбновленный список после удаления:" << std::endl;
-    Name::readAllFromFile(PREDEFINED_FILENAME);
+    Person::readAllFromFile(PREDEFINED_FILENAME);
 }
 
 void workWithUserInput() {
     std::cout << "=== РАБОТА С ПОЛЬЗОВАТЕЛЬСКИМ ВВОДОМ ===" << std::endl;
 
     std::cout << "Очистка файла перед началом работы..." << std::endl;
-    Name::clearFile(USER_FILENAME);
+    Person::clearFile(USER_FILENAME);
 
     int choice;
     do {
@@ -50,23 +50,23 @@ void workWithUserInput() {
 
         switch (choice) {
         case 1: {
-            Name newEmployee;
+            Person newEmployee;
             std::cout << "\nДобавление нового сотрудника:" << std::endl;
             std::cout << "-----------------------------" << std::endl;
             std::cin >> newEmployee;
 
-            if (!Name::isValidEmployeeNumber(newEmployee.getEmployeeNumber())) {
+            if (!Person::isValidEmployeeNumber(newEmployee.getEmployeeNumber())) {
                 std::cout << "Ошибка: неверный номер сотрудника!" << std::endl;
                 break;
             }
 
-            if (Name::isEmployeeNumberExists(USER_FILENAME, newEmployee.getEmployeeNumber())) {
+            if (Person::isEmployeeNumberExists(USER_FILENAME, newEmployee.getEmployeeNumber())) {
                 std::cout << "Ошибка: сотрудник с номером " << newEmployee.getEmployeeNumber()
                     << " уже существует!" << std::endl;
                 break;
             }
 
-            Name::writeToFile(newEmployee, USER_FILENAME);
+            Person::writeToFile(newEmployee, USER_FILENAME);
             std::cout << "Сотрудник успешно добавлен!" << std::endl;
             break;
         }
@@ -77,7 +77,7 @@ void workWithUserInput() {
             std::cout << "Введите номер сотрудника для поиска: ";
             std::cin >> searchNumber;
 
-            if (Name* foundEmp = Name::readFromFile(USER_FILENAME, searchNumber)) {
+            if (Person* foundEmp = Person::readFromFile(USER_FILENAME, searchNumber)) {
                 std::cout << "Результат поиска: " << *foundEmp << std::endl;
                 delete foundEmp;
             }
@@ -86,7 +86,7 @@ void workWithUserInput() {
 
         case 3: {
             std::cout << std::endl;
-            Name::readAllFromFile(USER_FILENAME);
+            Person::readAllFromFile(USER_FILENAME);
             break;
         }
 
@@ -96,13 +96,13 @@ void workWithUserInput() {
             std::cout << "Введите номер сотрудника для удаления: ";
             std::cin >> deleteNumber;
 
-            Name::deleteEmployeeByNumber(USER_FILENAME, deleteNumber);
+            Person::deleteEmployeeByNumber(USER_FILENAME, deleteNumber);
             break;
         }
 
         case 5: {
             std::cout << "\nОчистка всех данных..." << std::endl;
-            Name::clearFile(USER_FILENAME);
+            Person::clearFile(USER_FILENAME);
             std::cout << "Теперь можно вводить новые данные." << std::endl;
             break;
         }
