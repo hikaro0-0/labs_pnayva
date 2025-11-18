@@ -1,9 +1,13 @@
 #ifndef LISTALGORITHM_CPP
 #define LISTALGORITHM_CPP
+
 #include "ListAlgorithm.h"
+#include <algorithm>
+#include <ranges>
+
 template<typename T>
 typename std::list<T>::iterator ListAlgorithm<T>::search(Container<T>& container, const T& value) {
-    return std::find(container.begin(), container.end(), value);
+    return std::ranges::find(container, value);
 }
 
 template<typename T>
@@ -41,9 +45,10 @@ std::list<T> ListAlgorithm<T>::quickSort(std::list<T> lst) {
 
     T pivot = lst.front();
     lst.pop_front();
-
-    std::list<T> less, equal, greater;
-
+    
+    std::list<T> less;
+    std::list<T> equal;
+    std::list<T> greater;
     equal.push_back(pivot);
 
     for (const auto& item : lst) {
@@ -70,3 +75,4 @@ std::list<T> ListAlgorithm<T>::quickSort(std::list<T> lst) {
 }
 
 #endif
+

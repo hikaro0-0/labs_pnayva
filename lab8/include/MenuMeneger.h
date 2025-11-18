@@ -11,7 +11,7 @@ private:
     Container<std::string> stringContainer;
     Container<double> doubleContainer;
 
-    int selectDataType();
+    int selectDataType() const;
     void loadIntPreset();
     void loadStringPreset();
     void loadDoublePreset();
@@ -24,7 +24,7 @@ public:
     void loadPresetMenu();
     void addCustomDataMenu();
     void operationsMenu();
-    void showAllContainers();
+    void showAllContainers() const;
     void showMenu();
 };
 

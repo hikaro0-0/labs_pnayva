@@ -119,8 +119,7 @@ void MenuManager::performIntOperation(int operation) {
         int value;
         std::cout << "Введите число для поиска: ";
         std::cin >> value;
-        auto found = ListAlgorithm<int>::search(intContainer, value);
-        if (found != intContainer.end()) {
+        if (auto found = ListAlgorithm<int>::search(intContainer, value); found != intContainer.end()) {
             std::cout << "Элемент " << value << " найден!" << std::endl;
         }
         else {
@@ -152,8 +151,7 @@ void MenuManager::performStringOperation(int operation) {
         std::cout << "Введите строку для поиска: ";
         std::cin.ignore();
         std::getline(std::cin, value);
-        auto found = ListAlgorithm<std::string>::search(stringContainer, value);
-        if (found != stringContainer.end()) {
+        if (auto found = ListAlgorithm<std::string>::search(stringContainer, value); found != stringContainer.end()) {
             std::cout << "Строка \"" << value << "\" найдена!" << std::endl;
         }
         else {
@@ -184,8 +182,7 @@ void MenuManager::performDoubleOperation(int operation) {
         double value;
         std::cout << "Введите число для поиска: ";
         std::cin >> value;
-        auto found = ListAlgorithm<double>::search(doubleContainer, value);
-        if (found != doubleContainer.end()) {
+        if (auto found = ListAlgorithm<double>::search(doubleContainer, value); found != doubleContainer.end()) {
             std::cout << "Элемент " << value << " найден!" << std::endl;
         }
         else {
@@ -202,7 +199,7 @@ void MenuManager::performDoubleOperation(int operation) {
     }
 }
 
-void MenuManager::showAllContainers() {
+void MenuManager::showAllContainers() const {
     std::cout << "\n=== ВСЕ КОНТЕЙНЕРЫ ===" << std::endl;
     std::cout << "Целые числа: ";
     ListAlgorithm<int>::print(intContainer);
