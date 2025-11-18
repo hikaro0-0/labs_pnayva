@@ -7,11 +7,11 @@ void workWithPredefinedData() {
     std::cout << "=== РАБОТА С ПРЕДУСТАНОВЛЕННЫМИ ДАННЫМИ ===" << std::endl;
 
     Person predefinedEmployees[] = {
-        Person("Иван", "Петров", "Сергеевич", 1001),
-        Person("Мария", "Сидорова", "Ивановна", 1002),
-        Person("Алексей", "Козлов", "Петрович", 1003),
-        Person("Ольга", "Николаева", "Владимировна", 1004),
-        Person("Дмитрий", "Федоров", "Александрович", 1005)
+        Person("Иван", "Петров", "Сергеевич", 1),
+        Person("Мария", "Сидорова", "Ивановна", 2),
+        Person("Алексей", "Козлов", "Петрович", 3),
+        Person("Ольга", "Николаева", "Владимировна", 4),
+        Person("Дмитрий", "Федоров", "Александрович", 5)
     };
 
     Person::clearFile(PREDEFINED_FILENAME);
@@ -32,9 +32,6 @@ void workWithPredefinedData() {
 
 void workWithUserInput() {
     std::cout << "=== РАБОТА С ПОЛЬЗОВАТЕЛЬСКИМ ВВОДОМ ===" << std::endl;
-
-    std::cout << "Очистка файла перед началом работы..." << std::endl;
-    Person::clearFile(USER_FILENAME);
 
     int choice;
     do {
