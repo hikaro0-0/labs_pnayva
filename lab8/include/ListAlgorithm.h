@@ -1,7 +1,7 @@
 #ifndef LISTALGORITHM_H
 #define LISTALGORITHM_H
 
-#include "Container.h"
+#include "container.h"
 #include <iostream>
 #include <algorithm>
 

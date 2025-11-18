@@ -1,6 +1,6 @@
 #include "MenuMeneger.h"
 
-int MenuManager::selectDataType() {
+int MenuManager::selectDataType() const {
     int choice;
     std::cout << "\n=== ÂÛÁÎĞ ÒÈÏÀ ÄÀÍÍÛÕ ===" << std::endl;
     std::cout << "1. Öåëûå ÷èñëà" << std::endl;
@@ -32,7 +32,7 @@ void MenuManager::loadStringPreset() {
 
 void MenuManager::loadDoublePreset() {
     doubleContainer.clear();
-    doubleContainer.add(3.14);
+    doubleContainer.add(3.15);
     doubleContainer.add(2.71);
     doubleContainer.add(1.41);
     doubleContainer.add(1.61);
